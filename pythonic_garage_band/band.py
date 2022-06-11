@@ -3,16 +3,6 @@ class Musician:
         self.name = name
         self.member = []
 
-    @staticmethod
-    def play_solo():
-        return f''
-
-    def __str__(self):
-        pass
-
-    def __repr__(self):
-        pass
-
 
 class Guitarist(Musician):
     def __int__(self, name):
@@ -90,7 +80,3 @@ class Band(Guitarist, Drummer, Bassist):
     @classmethod
     def to_list(cls):
         return cls.instances
-
-
-if __name__ == "__main__":
-    pass

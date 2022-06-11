@@ -1,7 +1,7 @@
-
 class Musician:
     def __init__(self, name):
         self.name = name
+        self.member = []
 
     @staticmethod
     def play_solo():
@@ -13,23 +13,6 @@ class Musician:
     def __repr__(self):
         pass
 
-class Band:
-    band_list = []
-
-    def __int__(self, name, members):
-        # super().__init__(name)
-        self.name = name
-        self.members = members
-
-        # self.band_name = band
-
-    def play_solos(self):
-        pass
-
-    @classmethod
-    def to_list(cls):
-        pass
-
 
 class Guitarist(Musician):
     def __int__(self, name):
@@ -38,6 +21,10 @@ class Guitarist(Musician):
     @staticmethod
     def get_instrument():
         return "guitar"
+
+    @staticmethod
+    def play_solo():
+        return "face melting guitar solo"
 
     def __str__(self):
         return f'My name is {self.name} and I play guitar'
@@ -54,6 +41,10 @@ class Bassist(Musician):
     def get_instrument():
         return "bass"
 
+    @staticmethod
+    def play_solo():
+        return "bom bom buh bom"
+
     def __str__(self):
         return f'My name is {self.name} and I play bass'
 
@@ -69,11 +60,36 @@ class Drummer(Musician):
     def get_instrument():
         return "drums"
 
+    @staticmethod
+    def play_solo():
+        return "rattle boom crash"
+
     def __str__(self):
         return f'My name is {self.name} and I play drums'
 
     def __repr__(self):
         return f'Drummer instance. Name = {self.name}'
+
+
+class Band(Guitarist, Drummer, Bassist):
+    band_list = []
+    instances = []
+
+    def __init__(self, name, band):
+        super().__init__(name)
+        self.name = name
+        self.members = band
+        Band.instances.append(self)
+
+    def play_solos(self):
+        solos = []
+        for i in self.members:
+            solos.append(i.play_solo())
+        return solos
+
+    @classmethod
+    def to_list(cls):
+        return cls.instances
 
 
 if __name__ == "__main__":
